@@ -13,8 +13,10 @@ namespace TradersPortal.Models
         [Display(Name = "Business Name")]
         public string BusinessName { get; set; }
 
+        [Display(Name = "Contact's First Name")]
         public string ContactFirstName { get; set; }
 
+        [Display(Name = "Contact's Last Name")]
         public string ContactLastName { get; set; }
 
         public string Telephone { get; set; }
@@ -33,6 +35,8 @@ namespace TradersPortal.Models
         [Display(Name = "Trade")]
         public int TradeId { get; set; }
         public Trade Trade { get; set; }
+
+
 
         [Display(Name = "State")]
         public int StateId { get; set; }
