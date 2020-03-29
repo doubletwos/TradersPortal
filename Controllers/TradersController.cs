@@ -17,9 +17,16 @@ namespace TradersPortal.Controllers
         // GET: Traders
         public ActionResult Index()
         {
-            var traders = db.Traders.Include(t => t.State).Include(t => t.Trade);
-            return View(traders.ToList());
+            var traders = db.Traders
+                .Include(t => t.State)
+                .Include(t => t.Trade)
+                .ToList();
+                
+            return View(traders);
         }
+
+
+
 
         // GET: Traders/Details/5
         public ActionResult Details(int? id)
@@ -28,28 +35,34 @@ namespace TradersPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trader trader = db.Traders.Find(id);
-            if (trader == null)
-            {
-                return HttpNotFound();
-            }
+            var trader = db.Traders
+                .Include(t => t.State)
+                .Include(t => t.Trade)
+                .SingleOrDefault(c => c.TraderId == id);
+           
+
             return View(trader);
+
+
+
+
         }
 
         // GET: Traders/Create
         public ActionResult Create()
         {
+
+
             ViewBag.StateId = new SelectList(db.States, "StateId", "StateName");
             ViewBag.TradeId = new SelectList(db.Trades, "TradeId", "TradeName");
             return View();
         }
 
         // POST: Traders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TraderId,BusinessName,ContactFirstName,ContactLastName,Telephone,Mobile,Email,RegistrationDate,TradeId,StateId")] Trader trader)
+        public ActionResult Create(Trader trader)
         {
             if (ModelState.IsValid)
             {
@@ -58,8 +71,7 @@ namespace TradersPortal.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.StateId = new SelectList(db.States, "StateId", "StateName", trader.StateId);
-            ViewBag.TradeId = new SelectList(db.Trades, "TradeId", "TradeName", trader.TradeId);
+          
             return View(trader);
         }
 
@@ -70,7 +82,7 @@ namespace TradersPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trader trader = db.Traders.Find(id);
+            var trader = db.Traders.Find(id);
             if (trader == null)
             {
                 return HttpNotFound();
@@ -81,11 +93,10 @@ namespace TradersPortal.Controllers
         }
 
         // POST: Traders/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TraderId,BusinessName,ContactFirstName,ContactLastName,Telephone,Mobile,Email,RegistrationDate,TradeId,StateId")] Trader trader)
+        public ActionResult Edit(Trader trader)
         {
             if (ModelState.IsValid)
             {
@@ -93,8 +104,7 @@ namespace TradersPortal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.StateId = new SelectList(db.States, "StateId", "StateName", trader.StateId);
-            ViewBag.TradeId = new SelectList(db.Trades, "TradeId", "TradeName", trader.TradeId);
+           
             return View(trader);
         }
 
@@ -105,7 +115,7 @@ namespace TradersPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trader trader = db.Traders.Find(id);
+            var trader = db.Traders.Find(id);
             if (trader == null)
             {
                 return HttpNotFound();
@@ -118,7 +128,7 @@ namespace TradersPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Trader trader = db.Traders.Find(id);
+            var trader = db.Traders.Find(id);
             db.Traders.Remove(trader);
             db.SaveChanges();
             return RedirectToAction("Index");
