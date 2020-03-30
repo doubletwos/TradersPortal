@@ -6,15 +6,22 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TradersPortal.Models;
 
 namespace TradersPortal.Controllers
 {
+    
+
     [Authorize]
     public class AccountController : Controller
     {
+
+        // Added by me
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -155,6 +162,17 @@ namespace TradersPortal.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+
+                    //Temp code
+                    //var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    //var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    //await roleManager.CreateAsync(new IdentityRole("CanManageTraders"));
+                    //await roleManager.CreateAsync(new IdentityRole("CanManageUsers"));
+                    //await UserManager.AddToRolesAsync(user.Id, "CanManageTraders", "CanManageUsers");
+
+
+
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -422,6 +440,18 @@ namespace TradersPortal.Controllers
 
             base.Dispose(disposing);
         }
+
+
+
+        //Added by me
+        public ActionResult RegisteredUsers()
+        {
+            var users = db.Users.ToList();
+            
+            
+            return View(users);
+        }
+
 
         #region Helpers
         // Used for XSRF protection when adding external logins

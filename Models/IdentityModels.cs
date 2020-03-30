@@ -23,8 +23,9 @@ namespace TradersPortal.Models
 
         public DbSet<Trade> Trades { get; set; }
         public DbSet<Trader> Traders { get; set; }
-
         public DbSet<State> States { get; set; }
+
+
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -35,5 +36,7 @@ namespace TradersPortal.Models
         {
             return new ApplicationDbContext();
         }
+
+      
     }
 }

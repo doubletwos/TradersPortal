@@ -219,6 +219,10 @@
     <Compile Include="Migrations\202003291049410_DataAnnotations1.designer.cs">
       <DependentUpon>202003291049410_DataAnnotations1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003302155351_GenericSeedUsers.cs" />
+    <Compile Include="Migrations\202003302155351_GenericSeedUsers.designer.cs">
+      <DependentUpon>202003302155351_GenericSeedUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -518,6 +522,7 @@
     <Content Include="Views\Traders\Details.cshtml" />
     <Content Include="Views\Traders\Edit.cshtml" />
     <Content Include="Views\Traders\Index.cshtml" />
+    <Content Include="Views\Account\RegisteredUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -553,6 +558,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003291049410_DataAnnotations1.resx">
       <DependentUpon>202003291049410_DataAnnotations1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003302155351_GenericSeedUsers.resx">
+      <DependentUpon>202003302155351_GenericSeedUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
