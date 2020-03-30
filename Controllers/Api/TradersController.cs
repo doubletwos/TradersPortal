@@ -23,7 +23,9 @@ namespace TradersPortal.Controllers.Api
         public IEnumerable<TraderDto> GetTraders()
         {
             return db.Traders
-            .ToList().Select(Mapper.Map<Trader, TraderDto>);
+                .Include(s => s.State)
+                .Include(t => t.Trade)
+                .ToList().Select(Mapper.Map<Trader, TraderDto>);
         }
 
 

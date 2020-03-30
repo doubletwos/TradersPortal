@@ -14,6 +14,15 @@ namespace TradersPortal.App_Start
         {
             Mapper.CreateMap<Trader, TraderDto>();
             Mapper.CreateMap<TraderDto, Trader>();
+
+
+            Mapper.CreateMap<Trade, TradeDto>();
+          
+
+
+            Mapper.CreateMap<State, StateDto>();
+        
+
         }
     }
 }

@@ -33,11 +33,11 @@ namespace TradersPortal.Dtos
 
 
         public int TradeId { get; set; }
-        //public Trade Trade { get; set; }
+        public TradeDto Trade { get; set; }
 
 
         public int StateId { get; set; }
-        //public State State { get; set; }
+        public StateDto State { get; set; }
 
 
 

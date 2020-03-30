@@ -189,6 +189,8 @@
     <Compile Include="Controllers\StatesController.cs" />
     <Compile Include="Controllers\TradersController.cs" />
     <Compile Include="Controllers\TradesController.cs" />
+    <Compile Include="Dtos\StateDto.cs" />
+    <Compile Include="Dtos\TradeDto.cs" />
     <Compile Include="Dtos\TraderDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
