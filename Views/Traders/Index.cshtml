@@ -12,28 +12,30 @@
 <table id="traders" class="table table-bordered table-hover">
     <thead>
         <tr>
+           
+
             <th>
-             Business Name
+                Business Name
             </th>
-          
+
             <th>
-              Contact Name
+                Contact Name
             </th>
-          
+
             <th>
-            Telephone
-            </th>
-            <th>
-            Mobile Number
-            </th>
-            <th>
-             email address 
+                Telephone
             </th>
             <th>
-              Registration Date
+                Mobile Number
             </th>
             <th>
-               Trade Name
+                email address
+            </th>
+            <th>
+                Registration Date
+            </th>
+            <th>
+                Trade Name
             </th>
             <th>State</th>
         </tr>
@@ -44,20 +46,26 @@
 
 @section scripts
     {
-    
     <script>
-        $(document).ready(function () {
-            $("#traders").DataTable({
-                "ordering": false,
+    
+                   
+         $(document).ready(function () {
+             $("#traders").DataTable({
+                 "ordering": false,
 
-               
-                
+                 
+
+
                 ajax: {
                     url: "api/traders",
-                    dataSrc:""
+                    dataSrc: ""
                 },
                 columns: [
+
+                    
                     {
+
+
                         data: "traderId",
                         render: function (data, type, trader) {
                             return "<a href='/traders/details/" + trader.traderId + "'>" + trader.businessName + "</a>";
@@ -72,7 +80,7 @@
                         }
 
                     },
-                 
+
                     {
                         data: "telephone"
 
@@ -104,21 +112,30 @@
 
             }
 
-              
+
 
             )
 
-         
 
 
-           
+
+
 
 
 
         });
+
+
+
+
+
+
+
+
+
     </script>
-    
-    
-    
-    
-    }
+
+
+
+
+}

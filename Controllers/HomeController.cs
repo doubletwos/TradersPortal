@@ -4,19 +4,22 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TradersPortal.Models;
+using System.Data.Entity;
+
 
 namespace TradersPortal.Controllers
 {
     public class HomeController : Controller
     {
-      
-        public ActionResult Index()
-        {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        //public ActionResult Index()
+        //{
 
           
 
-            return View();
-        }
+        //    return View();
+        //}
 
         public ActionResult About()
         {
@@ -38,5 +41,70 @@ namespace TradersPortal.Controllers
             return View();
         }
 
+
+
+
+        // GET: Traders
+        [Authorize(Roles = "CanManageTraders")]
+        public ActionResult Index(string option, string search, string prefix)
+        {
+
+            var traders = db.Traders
+                .Include(t => t.Trade)
+                .Include(s =>s.State)
+                .ToList();
+
+            if (option == "StateName" && string.IsNullOrWhiteSpace(search))
+            {
+                return View(traders);
+                
+            }
+
+
+            else if (option == "StateName")
+            {
+
+                return View(db.Traders.Include(t => t.Trade).Include(s => s.State).Where(t => t.State.StateName == search).ToList());
+
+            }
+
+
+            else if (option == "TradeName" && string.IsNullOrWhiteSpace(search))
+            {
+                return View(traders);
+
+            }
+
+            else if (option == "TradeName")
+            {
+
+                return View(db.Traders.Include(t => t.Trade).Include(s => s.State).Where(t => t.Trade.TradeName == search).ToList());
+
+            }
+
+
+
+
+
+
+
+            else
+            {
+                return View(db.Traders.Include(t => t.State).Include(t => t.Trade).ToList());
+            }
+
+             
+           
+
+
+        }
+
+
+       
     }
+
+
+
+
+
 }

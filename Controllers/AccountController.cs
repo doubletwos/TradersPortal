@@ -444,6 +444,7 @@ namespace TradersPortal.Controllers
 
 
         //Added by me
+        [Authorize(Roles = "CanManageUsers")]
         public ActionResult RegisteredUsers()
         {
             var users = db.Users.ToList();

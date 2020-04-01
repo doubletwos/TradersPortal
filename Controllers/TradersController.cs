@@ -14,16 +14,21 @@ namespace TradersPortal.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+
+
+
         // GET: Traders
+        [Authorize(Roles = "CanManageTraders")]
         public ActionResult Index()
         {
             var traders = db.Traders
                 .Include(t => t.State)
                 .Include(t => t.Trade)
                 .ToList();
-                
+
             return View(traders);
         }
+
 
 
 

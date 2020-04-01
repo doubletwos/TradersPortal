@@ -523,6 +523,7 @@
     <Content Include="Views\Traders\Edit.cshtml" />
     <Content Include="Views\Traders\Index.cshtml" />
     <Content Include="Views\Account\RegisteredUsers.cshtml" />
+    <Content Include="Views\Home\Index1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

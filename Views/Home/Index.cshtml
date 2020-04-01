@@ -1,5 +1,193 @@
 ﻿
 
+@model IEnumerable<TradersPortal.Models.Trader>
+
+@{
+    ViewBag.Title = "Index1";
+}
+
+<h2>Index1</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<p>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+
+       
+
+        <div class="form-inline">
+            <label class="radio-inline">
+                @Html.RadioButton("option", "StateName", new { htmlAttributes = new { @class = "form-control" } }) <text>State</text>
+            </label>
+            <label class="radio-inline">
+                @Html.RadioButton("option", "TradeName", new { htmlAttributes = new { @class = "form-control" } }) <text> Trade </text>
+            </label>
+        </div>
+
+
+            <div class="form-inline">
+
+
+                <input name="search" class="form-control" placeholder="Trade or City" id="search" />
+
+                <button class="btn btn-primary btn-lg ">Search</button>
+
+            </div>
+
+
+
+
+
+     }
+
+
+</p>
+
+
+
+
+
+
+
+
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.State.StateName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Trade.TradeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BusinessName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegistrationDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.State.StateName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trade.TradeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusinessName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.TraderId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TraderId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TraderId })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @{
     ViewBag.Title = "Index";
 }
