@@ -5,7 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using TradersPortal.Models;
 using System.Data.Entity;
-
+using System.Security.Cryptography;
+using System.Runtime.InteropServices;
+using System.Web.WebPages.Html;
+using System.Web.UI.WebControls;
 
 namespace TradersPortal.Controllers
 {
@@ -16,7 +19,7 @@ namespace TradersPortal.Controllers
         //public ActionResult Index()
         //{
 
-          
+
 
         //    return View();
         //}
@@ -45,19 +48,29 @@ namespace TradersPortal.Controllers
 
 
         // GET: Traders
-        [Authorize(Roles = "CanManageTraders")]
-        public ActionResult Index(string option, string search, string prefix)
+
+        public ActionResult Index(string option, string search)
         {
 
             var traders = db.Traders
                 .Include(t => t.Trade)
-                .Include(s =>s.State)
-                .ToList();
+                .Include(s => s.State).ToList();
+
+
+
+
+
+
+
+
+
+
+
 
             if (option == "StateName" && string.IsNullOrWhiteSpace(search))
             {
                 return View(traders);
-                
+
             }
 
 
@@ -93,14 +106,33 @@ namespace TradersPortal.Controllers
                 return View(db.Traders.Include(t => t.State).Include(t => t.Trade).ToList());
             }
 
-             
-           
+
+
 
 
         }
 
 
-       
+        public JsonResult AutoComplete(string prefix)
+        {
+
+
+
+            var tradelist = (from trade in db.Trades
+                             where trade.TradeName.StartsWith(prefix)
+                             select new
+                             {
+                                 label = trade.TradeName,
+                                 val = trade.TradeId
+                             }).ToList();
+
+            return Json(tradelist);
+        }
+
+
+
+
+
     }
 
 

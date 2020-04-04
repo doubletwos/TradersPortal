@@ -12,6 +12,7 @@ namespace TradersPortal.Models
 
         
         [Display(Name = ("Trade Name"))]
-        public string TradeName { get; set; }   
+        public string TradeName { get; set; }
+
     }
 }

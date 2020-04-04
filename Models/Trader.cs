@@ -43,7 +43,7 @@ namespace TradersPortal.Models
         [Display(Name = "Trade")]
         [Required(ErrorMessage = "Please Select Your Trade")]
         public int TradeId { get; set; }
-        public Trade Trade { get; set; }
+        public virtual Trade Trade { get; set; }
 
 
 

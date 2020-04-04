@@ -223,6 +223,10 @@
     <Compile Include="Migrations\202003302155351_GenericSeedUsers.designer.cs">
       <DependentUpon>202003302155351_GenericSeedUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004031642098_Virtualaddedtotrade.cs" />
+    <Compile Include="Migrations\202004031642098_Virtualaddedtotrade.designer.cs">
+      <DependentUpon>202004031642098_Virtualaddedtotrade.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -562,6 +566,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003302155351_GenericSeedUsers.resx">
       <DependentUpon>202003302155351_GenericSeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004031642098_Virtualaddedtotrade.resx">
+      <DependentUpon>202004031642098_Virtualaddedtotrade.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
