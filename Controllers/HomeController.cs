@@ -48,76 +48,47 @@ namespace TradersPortal.Controllers
 
 
         // GET: Traders
-
-        public ActionResult Index(string option, string search)
+        public ActionResult Index(string searchstate, string searchtrade)
         {
-
             var traders = db.Traders
                 .Include(t => t.Trade)
                 .Include(s => s.State).ToList();
 
-
-
-
-
-
-
-
-
-
-
-
-            if (option == "StateName" && string.IsNullOrWhiteSpace(search))
+            // returns all when all textbox are empty 
+            if (string.IsNullOrWhiteSpace(searchstate) && string.IsNullOrWhiteSpace(searchtrade))
             {
                 return View(traders);
-
             }
 
-
-            else if (option == "StateName")
+            // returns traders if trade is selected & state is null
+            else if (string.IsNullOrWhiteSpace(searchstate) && !(string.IsNullOrWhiteSpace(searchtrade)))
             {
-
-                return View(db.Traders.Include(t => t.Trade).Include(s => s.State).Where(t => t.State.StateName == search).ToList());
-
+                return View(db.Traders.Include(t => t.Trade).Include(s => s.State).Where(t => t.Trade.TradeName == searchtrade).ToList());
             }
 
-
-            else if (option == "TradeName" && string.IsNullOrWhiteSpace(search))
+            // returns traders if state is selected & trade is null
+            else if (string.IsNullOrWhiteSpace(searchtrade) && !(string.IsNullOrEmpty(searchstate)))
             {
-                return View(traders);
-
+                return View(db.Traders.Include(t => t.Trade).Include(s => s.State).Where(t => t.State.StateName == searchstate).ToList());
             }
 
-            else if (option == "TradeName")
+            // returns traders & state if both are selected
+            else if (!(string.IsNullOrWhiteSpace(searchtrade) && !(string.IsNullOrEmpty(searchstate))))
             {
-
-                return View(db.Traders.Include(t => t.Trade).Include(s => s.State).Where(t => t.Trade.TradeName == search).ToList());
-
+                return View(db.Traders.Include(t => t.Trade).Include(s => s.State).Where(s => s.State.StateName == searchstate).Where(t => t.Trade.TradeName == searchtrade).ToList());
             }
-
-
-
-
-
-
-
             else
             {
-                return View(db.Traders.Include(t => t.State).Include(t => t.Trade).ToList());
+              
+                return RedirectToAction("About", "Home");
+               
             }
-
-
-
-
-
         }
 
 
-        public JsonResult AutoComplete(string prefix)
+
+        public JsonResult AutoCompleteTrade(string prefix)
         {
-
-
-
             var tradelist = (from trade in db.Trades
                              where trade.TradeName.StartsWith(prefix)
                              select new
@@ -130,10 +101,29 @@ namespace TradersPortal.Controllers
         }
 
 
+        public JsonResult AutoCompleteState(string prefix)
+        {
+            var statelist = (from state in db.States
+                             where state.StateName.StartsWith(prefix)
+                             select new
+                             {
+                                 label = state.StateName,
+                                 val = state.StateId
+                             }).ToList();
 
-
-
+            return Json(statelist);
+        }
     }
+
+
+
+
+
+
+
+
+
+
 
 
 
