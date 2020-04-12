@@ -30,5 +30,19 @@ textarea {
     left: -999em;
 }
 
+/*My styles*/
+
+.field-validation-error{
+    color: red;
+}
 
 
+.input-validation-error{
+    border: 2px solid red;
+}
+
+#width{
+    color: dodgerblue;
+    font-size:18px;
+    
+}

@@ -31,6 +31,36 @@
                 .Index(t => t.RoleId);
             
             CreateTable(
+                "dbo.States",
+                c => new
+                    {
+                        StateId = c.Int(nullable: false, identity: true),
+                        StateName = c.String(),
+                    })
+                .PrimaryKey(t => t.StateId);
+            
+            CreateTable(
+                "dbo.Traders",
+                c => new
+                    {
+                        TraderId = c.Int(nullable: false, identity: true),
+                        BusinessName = c.String(nullable: false),
+                        ContactFirstName = c.String(nullable: false),
+                        ContactLastName = c.String(nullable: false),
+                        Telephone = c.String(),
+                        Mobile = c.String(nullable: false),
+                        Email = c.String(),
+                        RegistrationDate = c.DateTime(nullable: false),
+                        TradeId = c.Int(nullable: false),
+                        StateId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.TraderId)
+                .ForeignKey("dbo.States", t => t.StateId, cascadeDelete: true)
+                .ForeignKey("dbo.Trades", t => t.TradeId, cascadeDelete: true)
+                .Index(t => t.TradeId)
+                .Index(t => t.StateId);
+            
+            CreateTable(
                 "dbo.Trades",
                 c => new
                     {
@@ -91,10 +121,14 @@
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Traders", "TradeId", "dbo.Trades");
+            DropForeignKey("dbo.Traders", "StateId", "dbo.States");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
+            DropIndex("dbo.Traders", new[] { "StateId" });
+            DropIndex("dbo.Traders", new[] { "TradeId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
@@ -102,6 +136,8 @@
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.Trades");
+            DropTable("dbo.Traders");
+            DropTable("dbo.States");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
         }

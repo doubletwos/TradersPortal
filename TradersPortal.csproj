@@ -195,37 +195,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003262051245_Initial.cs" />
-    <Compile Include="Migrations\202003262051245_Initial.designer.cs">
-      <DependentUpon>202003262051245_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202004122030322_Initial.cs" />
+    <Compile Include="Migrations\202004122030322_Initial.designer.cs">
+      <DependentUpon>202004122030322_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003281257221_Traders.cs" />
-    <Compile Include="Migrations\202003281257221_Traders.designer.cs">
-      <DependentUpon>202003281257221_Traders.cs</DependentUpon>
+    <Compile Include="Migrations\202004122037371_Two.cs" />
+    <Compile Include="Migrations\202004122037371_Two.designer.cs">
+      <DependentUpon>202004122037371_Two.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003281347158_TraderUpdate.cs" />
-    <Compile Include="Migrations\202003281347158_TraderUpdate.designer.cs">
-      <DependentUpon>202003281347158_TraderUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003281359198_StateAdded.cs" />
-    <Compile Include="Migrations\202003281359198_StateAdded.designer.cs">
-      <DependentUpon>202003281359198_StateAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003291045358_DataAnnotations.cs" />
-    <Compile Include="Migrations\202003291045358_DataAnnotations.designer.cs">
-      <DependentUpon>202003291045358_DataAnnotations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003291049410_DataAnnotations1.cs" />
-    <Compile Include="Migrations\202003291049410_DataAnnotations1.designer.cs">
-      <DependentUpon>202003291049410_DataAnnotations1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003302155351_GenericSeedUsers.cs" />
-    <Compile Include="Migrations\202003302155351_GenericSeedUsers.designer.cs">
-      <DependentUpon>202003302155351_GenericSeedUsers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004031642098_Virtualaddedtotrade.cs" />
-    <Compile Include="Migrations\202004031642098_Virtualaddedtotrade.designer.cs">
-      <DependentUpon>202004031642098_Virtualaddedtotrade.cs</DependentUpon>
+    <Compile Include="Migrations\202004122040019_three.cs" />
+    <Compile Include="Migrations\202004122040019_three.designer.cs">
+      <DependentUpon>202004122040019_three.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -399,6 +379,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <None Include="Properties\PublishProfiles\GoDaddyNew-Features.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -527,7 +508,11 @@
     <Content Include="Views\Traders\Edit.cshtml" />
     <Content Include="Views\Traders\Index.cshtml" />
     <Content Include="Views\Account\RegisteredUsers.cshtml" />
+    <Content Include="Views\Traders\Index1.cshtml" />
     <Content Include="Views\Home\Index1.cshtml" />
+    <None Include="Web.Testing.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -546,34 +531,30 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003262051245_Initial.resx">
-      <DependentUpon>202003262051245_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004122030322_Initial.resx">
+      <DependentUpon>202004122030322_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003281257221_Traders.resx">
-      <DependentUpon>202003281257221_Traders.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004122037371_Two.resx">
+      <DependentUpon>202004122037371_Two.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003281347158_TraderUpdate.resx">
-      <DependentUpon>202003281347158_TraderUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003281359198_StateAdded.resx">
-      <DependentUpon>202003281359198_StateAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003291045358_DataAnnotations.resx">
-      <DependentUpon>202003291045358_DataAnnotations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003291049410_DataAnnotations1.resx">
-      <DependentUpon>202003291049410_DataAnnotations1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003302155351_GenericSeedUsers.resx">
-      <DependentUpon>202003302155351_GenericSeedUsers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004031642098_Virtualaddedtotrade.resx">
-      <DependentUpon>202004031642098_Virtualaddedtotrade.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004122040019_three.resx">
+      <DependentUpon>202004122040019_three.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Testing|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

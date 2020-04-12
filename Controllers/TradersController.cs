@@ -23,12 +23,24 @@ namespace TradersPortal.Controllers
         {
             var traders = db.Traders
                 .Include(t => t.State)
-                .Include(t => t.Trade)
+                //.Include(t => t.Trade)
                 .ToList();
 
             return View(traders);
         }
 
+
+        // GET: Traders
+        [Authorize(Roles = "CanManageTraders")]
+        public ActionResult Index1()
+        {
+            var traders = db.Traders
+                .Include(t => t.State)
+                //.Include(t => t.Trade)
+                .ToList();
+
+            return View(traders);
+        }
 
 
 
@@ -42,9 +54,9 @@ namespace TradersPortal.Controllers
             }
             var trader = db.Traders
                 .Include(t => t.State)
-                .Include(t => t.Trade)
+                //.Include(t => t.Trade)
                 .SingleOrDefault(c => c.TraderId == id);
-           
+
 
             return View(trader);
 
@@ -54,17 +66,17 @@ namespace TradersPortal.Controllers
         }
 
         // GET: Traders/Create
-        public ActionResult Create()
-        {
+        //public ActionResult Create()
+        //{
 
 
-            ViewBag.StateId = new SelectList(db.States, "StateId", "StateName");
-            ViewBag.TradeId = new SelectList(db.Trades, "TradeId", "TradeName");
-            return View();
-        }
+        //    ViewBag.StateId = new SelectList(db.States, "StateId", "StateName");
+        //    ViewBag.TradeId = new SelectList(db.Trades, "TradeId", "TradeName");
+        //    return View();
+        //}
 
         // POST: Traders/Create
-      
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Trader trader)
@@ -76,7 +88,7 @@ namespace TradersPortal.Controllers
                 return RedirectToAction("Index");
             }
 
-          
+
             return View(trader);
         }
 
@@ -93,12 +105,12 @@ namespace TradersPortal.Controllers
                 return HttpNotFound();
             }
             ViewBag.StateId = new SelectList(db.States, "StateId", "StateName", trader.StateId);
-            ViewBag.TradeId = new SelectList(db.Trades, "TradeId", "TradeName", trader.TradeId);
+            //ViewBag.TradeId = new SelectList(db.Trades, "TradeId", "TradeName", trader.TradeId);
             return View(trader);
         }
 
         // POST: Traders/Edit/5
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Trader trader)
@@ -109,7 +121,7 @@ namespace TradersPortal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-           
+
             return View(trader);
         }
 

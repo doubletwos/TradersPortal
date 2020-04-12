@@ -7,7 +7,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using TradersPortal.App_Start;
+//using TradersPortal.App_Start;
 
 namespace TradersPortal
 {
@@ -15,7 +15,7 @@ namespace TradersPortal
     {
         protected void Application_Start()
         {
-            Mapper.Initialize(c => c.AddProfile<MappingProfile>());
+            //Mapper.Initialize(c => c.AddProfile<MappingProfile>());
             GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

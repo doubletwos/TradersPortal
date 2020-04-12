@@ -1,131 +1,131 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Http.Description;
-using TradersPortal.Dtos;
-using TradersPortal.Models;
+﻿//using AutoMapper;
+//using System;
+//using System.Collections.Generic;
+//using System.Data;
+//using System.Data.Entity;
+//using System.Data.Entity.Infrastructure;
+//using System.Linq;
+//using System.Net;
+//using System.Net.Http;
+//using System.Web.Http;
+//using System.Web.Http.Description;
+//using TradersPortal.Dtos;
+//using TradersPortal.Models;
 
-namespace TradersPortal.Controllers.Api
-{
-    public class TradersController : ApiController
-    {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
-
-        // GET: api/Traders
-        public IEnumerable<TraderDto> GetTraders()
-        {
-            return db.Traders
-                .Include(s => s.State)
-                .Include(t => t.Trade)
-                .ToList().Select(Mapper.Map<Trader, TraderDto>);
-        }
+//namespace TradersPortal.Controllers.Api
+//{
+//    public class TradersController : ApiController
+//    {
+//        private ApplicationDbContext db = new ApplicationDbContext();
 
 
+//        // GET: api/Traders
+//        //public IEnumerable<TraderDto> GetTraders()
+//        //{
+//        //    return db.Traders
+//        //        .Include(s => s.State)
+//        //        .Include(t => t.Trade)
+//        //        .ToList().Select(Mapper.Map<Trader, TraderDto>);
+//        //}
 
 
-        // GET: api/Traders/5
-        //[ResponseType(typeof(Trader))]
-        public IHttpActionResult GetTrader(int id)
-        {
-            var trader = db.Traders.SingleOrDefault(t => t.TraderId == id);
 
 
-            if (trader == null)
-            return NotFound();
+//        // GET: api/Traders/5
+//        //[ResponseType(typeof(Trader))]
+//        public IHttpActionResult GetTrader(int id)
+//        {
+//            var trader = db.Traders.SingleOrDefault(t => t.TraderId == id);
 
-            return Ok(Mapper.Map<Trader, TraderDto>(trader));
-        }
+
+//            if (trader == null)
+//            return NotFound();
+
+//            return Ok(Mapper.Map<Trader, TraderDto>(trader));
+//        }
 
      
 
-        // POST: api/Traders
-        //[ResponseType(typeof(Trader))]
-        [HttpPost]
-        public IHttpActionResult CreateTrader(TraderDto traderDto)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest();
+//        // POST: api/Traders
+//        //[ResponseType(typeof(Trader))]
+//        [HttpPost]
+//        public IHttpActionResult CreateTrader(TraderDto traderDto)
+//        {
+//            if (!ModelState.IsValid)
+//                return BadRequest();
 
-            var trader = Mapper.Map<TraderDto, Trader>(traderDto);
+//            var trader = Mapper.Map<TraderDto, Trader>(traderDto);
 
-            db.Traders.Add(trader);
-            db.SaveChanges();
+//            db.Traders.Add(trader);
+//            db.SaveChanges();
 
-            traderDto.TraderId = trader.TraderId;
+//            traderDto.TraderId = trader.TraderId;
 
-            return Created(new Uri(Request.RequestUri + "/" + trader.TraderId), traderDto);
-        }
-
-
+//            return Created(new Uri(Request.RequestUri + "/" + trader.TraderId), traderDto);
+//        }
 
 
 
 
-        // PUT: api/Traders/5
-        //[ResponseType(typeof(void))]
-        [HttpPut]
-        public IHttpActionResult UpdateTrader(int id, TraderDto traderDto)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest();
-
-            var traderInDb = db.Traders.SingleOrDefault(t => t.TraderId == id);
 
 
-            if (traderInDb == null)
-            {
-                return NotFound();
-            }
+//        // PUT: api/Traders/5
+//        //[ResponseType(typeof(void))]
+//        [HttpPut]
+//        public IHttpActionResult UpdateTrader(int id, TraderDto traderDto)
+//        {
+//            if (!ModelState.IsValid)
+//                return BadRequest();
 
-            Mapper.Map(traderDto, traderInDb);
-
-            db.SaveChanges();
-            return Ok();
-
-        }
+//            var traderInDb = db.Traders.SingleOrDefault(t => t.TraderId == id);
 
 
+//            if (traderInDb == null)
+//            {
+//                return NotFound();
+//            }
 
-        // DELETE: api/Traders/5
-        //[ResponseType(typeof(Trader))]
-        [HttpDelete]
-        public IHttpActionResult DeleteTrader(int id)
-        {
+//            Mapper.Map(traderDto, traderInDb);
 
-            var traderInDb = db.Traders.SingleOrDefault(t => t.TraderId == id);
+//            db.SaveChanges();
+//            return Ok();
+
+//        }
+
+
+
+//        // DELETE: api/Traders/5
+//        //[ResponseType(typeof(Trader))]
+//        [HttpDelete]
+//        public IHttpActionResult DeleteTrader(int id)
+//        {
+
+//            var traderInDb = db.Traders.SingleOrDefault(t => t.TraderId == id);
             
            
-            if (traderInDb == null)
-            {
-              return NotFound();
-            }
+//            if (traderInDb == null)
+//            {
+//              return NotFound();
+//            }
 
-            db.Traders.Remove(traderInDb);
-            db.SaveChanges();
+//            db.Traders.Remove(traderInDb);
+//            db.SaveChanges();
 
-            return Ok();
-        }
+//            return Ok();
+//        }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+//        protected override void Dispose(bool disposing)
+//        {
+//            if (disposing)
+//            {
+//                db.Dispose();
+//            }
+//            base.Dispose(disposing);
+//        }
 
-        private bool TraderExists(int id)
-        {
-            return db.Traders.Count(e => e.TraderId == id) > 0;
-        }
-    }
-}
+//        private bool TraderExists(int id)
+//        {
+//            return db.Traders.Count(e => e.TraderId == id) > 0;
+//        }
+//    }
+//}

@@ -10,7 +10,7 @@ namespace TradersPortal.Models
     {
         public int TradeId { get; set; }
 
-        
+
         [Display(Name = ("Trade Name"))]
         public string TradeName { get; set; }
 

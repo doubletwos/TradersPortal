@@ -26,7 +26,7 @@ namespace TradersPortal.Models
 
         [Required(ErrorMessage = "Please Enter Mobile Contact Number")]
         public string Mobile { get; set; }
-       
+
 
 
         public string Email { get; set; }
@@ -56,5 +56,5 @@ namespace TradersPortal.Models
 
 
 
-    }       
+    }
 }

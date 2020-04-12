@@ -6831,4 +6831,14 @@ button.close {
     display: none !important;
   }
 }
+
+#width {
+    font-size: 40px;
+    color: red;
+}
+
+
+
+
+
 /*# sourceMappingURL=bootstrap.css.map */

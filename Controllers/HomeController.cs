@@ -38,7 +38,7 @@ namespace TradersPortal.Controllers
             return View();
         }
 
-
+        [Authorize(Roles = "CanManageTraders")]
         public ActionResult AdminPage()
         {
             return View();
@@ -79,9 +79,9 @@ namespace TradersPortal.Controllers
             }
             else
             {
-              
+
                 return RedirectToAction("About", "Home");
-               
+
             }
         }
 
