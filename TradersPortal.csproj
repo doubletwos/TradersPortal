@@ -184,6 +184,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\TradersController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StatesController.cs" />
@@ -207,8 +208,14 @@
     <Compile Include="Migrations\202004122040019_three.designer.cs">
       <DependentUpon>202004122040019_three.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004130757461_Files.cs" />
+    <Compile Include="Migrations\202004130757461_Files.designer.cs">
+      <DependentUpon>202004130757461_Files.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\File.cs" />
+    <Compile Include="Models\FileType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\State.cs" />
@@ -470,7 +477,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\NIU.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -506,16 +513,17 @@
     <Content Include="Views\Traders\Delete.cshtml" />
     <Content Include="Views\Traders\Details.cshtml" />
     <Content Include="Views\Traders\Edit.cshtml" />
-    <Content Include="Views\Traders\Index.cshtml" />
+    <Content Include="Views\Traders\NIU.cshtml" />
     <Content Include="Views\Account\RegisteredUsers.cshtml" />
-    <Content Include="Views\Traders\Index1.cshtml" />
-    <Content Include="Views\Home\Index1.cshtml" />
+    <Content Include="Views\Traders\IndexAd.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Testing.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -539,6 +547,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004122040019_three.resx">
       <DependentUpon>202004122040019_three.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004130757461_Files.resx">
+      <DependentUpon>202004130757461_Files.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

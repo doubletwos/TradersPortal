@@ -7,16 +7,13 @@
 <br />
 <div class="row">
 	<div class="col-lg-6">
-		<p>Are you a trader? Join us by clicking the button below</p>
+		<p>Register a Trader by clicking the button below</p>
 		<p>
-			<input type="button" value="Join Us" onclick="location.href='@Url.Action("Create", "Traders")'" class="btn btn-primary " />
+			<input type="button" value="Register Trader" onclick="location.href='@Url.Action("Create", "Traders")'" class="btn btn-primary " />
 		</p>
 	</div>
 	<div class="col-lg-6">
-		<p>Click the button to get quotes for a job</p>
-		<p>
-			<input type="button" value="Get Quotes" onclick="location.href='@Url.Action("Create", "Traders")'" class="btn btn-primary " />
-		</p>
+		
 	</div>
 </div>
 <br />
@@ -28,14 +25,15 @@
 		<p>
 			@using (Html.BeginForm("Index", "Home", FormMethod.Get))
 			{
-				<div class="form-inline">
-					<input type="text" name="searchtrade" class="form-control" placeholder="Electrician, Plumber" id="searchtrade" />
-					<input type="hidden" id="hfTrade" name="searchtrade" />
-					<input type="text" name="searchstate" class="form-control" placeholder="Adamawa, Akwa Ibom" id="searchstate" />
-					<input type="hidden" id="hfState" name="searchstare" />
-					<button class="btn btn-primary">Search</button>
-					<br /><br />
-				</div>
+			<div class="form-inline">
+				<input type="text" name="searchtrade" class="form-control" placeholder="Electrician, Plumber" id="searchtrade" /> <hr />
+				<input type="hidden" id="hfTrade" name="searchtrade" />
+				<input type="text" name="searchstate" class="form-control" placeholder="Adamawa, Akwa Ibom" id="searchstate" />
+				<input type="hidden" id="hfState" name="searchstare" />
+				<hr />
+				<button class="btn btn-primary">Search</button>
+				<br /><br />
+			</div>
 			}
 		</p>
 	</div>
@@ -47,6 +45,11 @@
 		@foreach (var item in Model)
 		{
 			<tr>
+				<td>
+				<img src="~/File?id=@item.Files.First(f => f.FileType == TradersPortal.Models.FileType.Avatar).FileId" alt="avatar" width="100" />
+				</td>
+
+
 				<td>
 					<div id="width">
 						@Html.DisplayFor(modelItem => item.BusinessName)
@@ -83,62 +86,62 @@
 	<script type="text/javascript">
 		$(function () {
 			$("#searchtrade").autocomplete({
-				source: function (request, response) {
+							source: function (request, response) {
 					$.ajax({
-						url: '/Home/AutoCompleteTrade/',
+									url: '/Home/AutoCompleteTrade/',
 						data: " {'prefix' : '" + request.term + "'}",
 						dataType: "json",
 						type: "POST",
 						contentType: "application/json; charset=utf-8",
 						success: function (data) {
-							response($.map(data, function (item) {
-								return item;
-							}))
+											response($.map(data, function (item) {
+												return item;
+											}))
 						},
 						error: function (response) {
-							alert(response.responseText);
-						},
+											alert(response.responseText);
+										},
 						failure: function (response) {
-							alert(response.responseText);
-						}
-					});
-				},
+											alert(response.responseText);
+										}
+									});
+								},
 				select: function (e, i) {
 					$("#hfTrade").val(i.item.val);
-				},
+								},
 				minLength: 0
 			});
-		});
+						});
 	</script>
 	<script type="text/javascript">
 		$(function () {
 			$("#searchstate").autocomplete({
-				source: function (request, response) {
+							source: function (request, response) {
 					$.ajax({
-						url: '/Home/AutoCompleteState/',
+									url: '/Home/AutoCompleteState/',
 						data: " {'prefix' : '" + request.term + "'}",
 						dataType: "json",
 						type: "POST",
 						contentType: "application/json; charset=utf-8",
 						success: function (data) {
-							response($.map(data, function (item) {
-								return item;
-							}))
+											response($.map(data, function (item) {
+												return item;
+											}))
 						},
 						error: function (response) {
-							alert(response.responseText);
-						},
+											alert(response.responseText);
+										},
 						failure: function (response) {
-							alert(response.responseText);
-						}
-					});
-				},
+											alert(response.responseText);
+										}
+									});
+								},
 				select: function (e, i) {
 					$("#hfState").val(i.item.val);
-				},
+								},
 				minLength: 0
 			});
-		});
+						});
 	</script>
 }
 @*<div class="jumbotron">

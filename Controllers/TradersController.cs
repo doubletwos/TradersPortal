@@ -23,7 +23,7 @@ namespace TradersPortal.Controllers
         {
             var traders = db.Traders
                 .Include(t => t.State)
-                //.Include(t => t.Trade)
+                .Include(t => t.Trade)
                 .ToList();
 
             return View(traders);
@@ -32,11 +32,11 @@ namespace TradersPortal.Controllers
 
         // GET: Traders
         [Authorize(Roles = "CanManageTraders")]
-        public ActionResult Index1()
+        public ActionResult IndexAd()
         {
             var traders = db.Traders
                 .Include(t => t.State)
-                //.Include(t => t.Trade)
+                .Include(t => t.Trade)
                 .ToList();
 
             return View(traders);
@@ -54,7 +54,8 @@ namespace TradersPortal.Controllers
             }
             var trader = db.Traders
                 .Include(t => t.State)
-                //.Include(t => t.Trade)
+                .Include(t => t.Trade)
+                .Include(s => s.Files)
                 .SingleOrDefault(c => c.TraderId == id);
 
 
@@ -66,28 +67,43 @@ namespace TradersPortal.Controllers
         }
 
         // GET: Traders/Create
-        //public ActionResult Create()
-        //{
+        public ActionResult Create()
+        {
 
 
-        //    ViewBag.StateId = new SelectList(db.States, "StateId", "StateName");
-        //    ViewBag.TradeId = new SelectList(db.Trades, "TradeId", "TradeName");
-        //    return View();
-        //}
+            ViewBag.StateId = new SelectList(db.States, "StateId", "StateName");
+            ViewBag.TradeId = new SelectList(db.Trades, "TradeId", "TradeName");
+            return View();
+        }
 
         // POST: Traders/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Trader trader)
+        public ActionResult Create(Trader trader, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
-                db.Traders.Add(trader);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (upload != null & upload.ContentLength > 0)
+                {
+                    var avatar = new File
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Avatar,
+                        ContentType = upload.ContentType
+                    };
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    trader.Files = new List<File> { avatar };
+                }
+           
 
+               db.Traders.Add(trader);
+               db.SaveChanges();
+               return RedirectToAction("Index1");
+            }
 
             return View(trader);
         }
@@ -99,13 +115,13 @@ namespace TradersPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var trader = db.Traders.Find(id);
+            Trader trader = db.Traders.Include(s => s.Files).SingleOrDefault(s => s.TraderId == id);
             if (trader == null)
             {
                 return HttpNotFound();
             }
             ViewBag.StateId = new SelectList(db.States, "StateId", "StateName", trader.StateId);
-            //ViewBag.TradeId = new SelectList(db.Trades, "TradeId", "TradeName", trader.TradeId);
+            ViewBag.TradeId = new SelectList(db.Trades, "TradeId", "TradeName", trader.TradeId);
             return View(trader);
         }
 
@@ -113,16 +129,50 @@ namespace TradersPortal.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Trader trader)
+        public ActionResult Edit(Trader trader, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(trader).State = EntityState.Modified;
+                var traderinDb = db.Traders.Include(f => f.Files).Single(c => c.TraderId == trader.TraderId);
+                traderinDb.BusinessName = trader.BusinessName;
+                traderinDb.ContactFirstName = trader.ContactFirstName;
+                traderinDb.ContactLastName = trader.ContactLastName;
+                traderinDb.Telephone = trader.Telephone;
+                traderinDb.Mobile = trader.Mobile;
+                traderinDb.Email = trader.Email;
+                traderinDb.RegistrationDate = trader.RegistrationDate;
+                traderinDb.TradeId = trader.TradeId;
+                traderinDb.StateId = trader.StateId;
+
+
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    if (traderinDb.Files.Any(f => f.FileType == FileType.Avatar))
+                    {
+                        db.Files.Remove(traderinDb.Files.First(f => f.FileType == FileType.Avatar));
+                    }
+                    var avatar = new File
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Avatar,
+                        ContentType = upload.ContentType
+                    };
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    traderinDb.Files = new List<File> { avatar };
+                }
+
+
+
+                db.Entry(traderinDb).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
 
-            return View(trader);
+            return RedirectToAction("Index1");
+
+           
         }
 
         // GET: Traders/Delete/5

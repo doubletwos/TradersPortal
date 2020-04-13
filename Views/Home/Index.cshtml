@@ -15,7 +15,7 @@
 	<div class="col-lg-6">
 		<p>Click the button to get quotes for a job</p>
 		<p>
-			<input type="button" value="Get Quotes" onclick="location.href='@Url.Action("Create", "Traders")'" class="btn btn-primary " />
+			<input type="button" value="Get Quote" onclick="location.href='@Url.Action("", "")'" class="btn btn-primary " />
 		</p>
 	</div>
 </div>
@@ -29,9 +29,9 @@
 			@using (Html.BeginForm("Index", "Home", FormMethod.Get))
 			{
 				<div class="form-inline">
-					<input type="text" name="searchtrade" class="form-control" placeholder="Electrician, Plumber" id="searchtrade" />
+					<input type="text" name="searchtrade" class="form-control" placeholder="Electrician, Plumber" id="searchtrade" /> <hr/>
 					<input type="hidden" id="hfTrade" name="searchtrade" />
-					<input type="text" name="searchstate" class="form-control" placeholder="Adamawa, Akwa Ibom" id="searchstate" />
+					<input type="text" name="searchstate" class="form-control" placeholder="Adamawa, Akwa Ibom" id="searchstate" /> <hr />
 					<input type="hidden" id="hfState" name="searchstare" />
 					<button class="btn btn-primary">Search</button>
 					<br /><br />
@@ -46,33 +46,40 @@
 		</tr>
 		@foreach (var item in Model)
 		{
-			<tr>
-				<td>
-					<div id="width">
-						@Html.DisplayFor(modelItem => item.BusinessName)
-					</div>
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.State.StateName)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Trade.TradeName)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Telephone)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Mobile)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Email)
-				</td>
-				@*<td>
-					@Html.ActionLink("Edit", "Edit", new { id = item.TraderId }) |
-					@Html.ActionLink("Details", "Details", new { id = item.TraderId }) |
-					@Html.ActionLink("Delete", "Delete", new { id = item.TraderId })
-				</td>*@
-			</tr>
+	<tr>
+		
+		<td>
+			<div id="image">
+				<img src="~/File?id=@item.Files.First(f => f.FileType == TradersPortal.Models.FileType.Avatar).FileId" alt="avatar" width="100" />
+			</div>
+		</td>
+		
+		<td>
+			<div id="width">
+				@Html.DisplayFor(modelItem => item.BusinessName)
+			</div>
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.State.StateName)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Trade.TradeName)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Telephone)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Mobile)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Email)
+		</td>
+		@*<td>
+			@Html.ActionLink("Edit", "Edit", new { id = item.TraderId }) |
+			@Html.ActionLink("Details", "Details", new { id = item.TraderId }) |
+			@Html.ActionLink("Delete", "Delete", new { id = item.TraderId })
+		</td>*@
+	</tr>
 		}
 	</table>
 </div>

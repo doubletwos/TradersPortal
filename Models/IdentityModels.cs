@@ -24,6 +24,7 @@ namespace TradersPortal.Models
         public DbSet<Trade> Trades { get; set; }
         public DbSet<Trader> Traders { get; set; }
         public DbSet<State> States { get; set; }
+        public DbSet<File> Files { get; set; }
 
 
 

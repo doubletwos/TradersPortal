@@ -80,7 +80,7 @@ namespace TradersPortal.Controllers
             else
             {
 
-                return RedirectToAction("About", "Home");
+                return View(traders);
 
             }
         }
