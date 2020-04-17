@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TradersPortal.Migrations;
 using TradersPortal.Models;
 
 namespace TradersPortal.Controllers
@@ -18,7 +19,7 @@ namespace TradersPortal.Controllers
 
 
         // GET: Traders
-        [Authorize(Roles = "CanManageTraders")]
+       
         public ActionResult Index()
         {
             var traders = db.Traders
@@ -77,36 +78,38 @@ namespace TradersPortal.Controllers
         }
 
         // POST: Traders/Create
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Trader trader, HttpPostedFileBase upload)
+        public ActionResult Create(Trader trader, IEnumerable<HttpPostedFileBase> uploads)
         {
             if (ModelState.IsValid)
             {
-                if (upload != null & upload.ContentLength > 0)
+                trader.Files = new List<File>();
+                foreach (var file in uploads)
                 {
-                    var avatar = new File
+                    if (file != null /*& file.ContentLength > 0*/)
                     {
-                        FileName = System.IO.Path.GetFileName(upload.FileName),
-                        FileType = FileType.Avatar,
-                        ContentType = upload.ContentType
-                    };
-                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
-                    {
-                        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                        var avatar = new File
+                        {
+                            FileName = System.IO.Path.GetFileName(file.FileName),
+                            FileType = FileType.Avatar,
+                            ContentType = file.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(file.InputStream))
+                        {
+                            avatar.Content = reader.ReadBytes(file.ContentLength);
+                        }
+                        trader.Files.Add(avatar);
                     }
-                    trader.Files = new List<File> { avatar };
                 }
-           
-
-               db.Traders.Add(trader);
-               db.SaveChanges();
-               return RedirectToAction("Index1");
+                db.Traders.Add(trader);
+                db.SaveChanges();
             }
-
-            return View(trader);
+            return RedirectToAction("Index", "Home");
         }
+
+
+
 
         // GET: Traders/Edit/5
         public ActionResult Edit(int? id)
@@ -170,12 +173,13 @@ namespace TradersPortal.Controllers
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Index1");
+            return RedirectToAction("Index", "Home");
 
-           
+
         }
 
         // GET: Traders/Delete/5
+        [Authorize(Roles = "CanManageTraders")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -198,7 +202,7 @@ namespace TradersPortal.Controllers
             var trader = db.Traders.Find(id);
             db.Traders.Remove(trader);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
 
         protected override void Dispose(bool disposing)

@@ -47,13 +47,15 @@
 		@foreach (var item in Model)
 		{
 	<tr>
-		
+
+
 		<td>
 			<div id="image">
-				<img src="~/File?id=@item.Files.First(f => f.FileType == TradersPortal.Models.FileType.Avatar).FileId" alt="avatar" width="100" />
+				@*<img src="~/File?id=@item.Files.First(f => f.FileType == TradersPortal.Models.FileType.Avatar).FileId" alt="avatar" width="100" />*@
 			</div>
+
 		</td>
-		
+
 		<td>
 			<div id="width">
 				@Html.DisplayFor(modelItem => item.BusinessName)
@@ -74,11 +76,11 @@
 		<td>
 			@Html.DisplayFor(modelItem => item.Email)
 		</td>
-		@*<td>
-			@Html.ActionLink("Edit", "Edit", new { id = item.TraderId }) |
-			@Html.ActionLink("Details", "Details", new { id = item.TraderId }) |
-			@Html.ActionLink("Delete", "Delete", new { id = item.TraderId })
-		</td>*@
+		<td>
+			@*@Html.ActionLink("Edit", "Edit", new { id = item.TraderId }) |*@
+			@Html.ActionLink("Details", "Details", new { id = item.TraderId }) @*|
+			@Html.ActionLink("Delete", "Delete", new { id = item.TraderId })*@
+		</td>
 	</tr>
 		}
 	</table>

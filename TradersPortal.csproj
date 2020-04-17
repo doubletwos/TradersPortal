@@ -212,6 +212,10 @@
     <Compile Include="Migrations\202004130757461_Files.designer.cs">
       <DependentUpon>202004130757461_Files.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004150926527_DATE.cs" />
+    <Compile Include="Migrations\202004150926527_DATE.designer.cs">
+      <DependentUpon>202004150926527_DATE.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\File.cs" />
@@ -344,6 +348,7 @@
     <Content Include="Views\Account\RegisteredUsers.cshtml" />
     <Content Include="Views\Traders\IndexAd.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
     <None Include="Web.Testing.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -377,6 +382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004130757461_Files.resx">
       <DependentUpon>202004130757461_Files.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004150926527_DATE.resx">
+      <DependentUpon>202004150926527_DATE.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

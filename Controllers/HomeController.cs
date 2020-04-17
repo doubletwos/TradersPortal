@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using System.Runtime.InteropServices;
 using System.Web.WebPages.Html;
 using System.Web.UI.WebControls;
+using System.Net;
 
 namespace TradersPortal.Controllers
 {
@@ -113,8 +114,34 @@ namespace TradersPortal.Controllers
 
             return Json(statelist);
         }
+
+
+        // GET: Traders/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var trader = db.Traders
+                .Include(t => t.State)
+                .Include(t => t.Trade)
+                .Include(s => s.Files)
+                .SingleOrDefault(c => c.TraderId == id);
+
+
+            return View(trader);
+
+
+
+
+        }
+
+
     }
 
+
+  
 
 
 

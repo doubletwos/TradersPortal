@@ -22,7 +22,7 @@ namespace TradersPortal.Models
         public string Mobile { get; set; }
         public string Email { get; set; }
         [Display(Name = "Registration Date")]
-        [Required(ErrorMessage = "Please Select Sign Up Date")]
+      
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? RegistrationDate { get; set; }
