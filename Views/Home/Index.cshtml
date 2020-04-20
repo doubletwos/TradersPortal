@@ -47,14 +47,11 @@
 		@foreach (var item in Model)
 		{
 	<tr>
-
-
 		<td>
-			<div id="image">
-				@*<img src="~/File?id=@item.Files.First(f => f.FileType == TradersPortal.Models.FileType.Avatar).FileId" alt="avatar" width="100" />*@
-			</div>
-
+			<img src="~/File?id=@item.Files.First(f => f.FileType == TradersPortal.Models.FileType.Avatar).FileId" alt="avatar" width="100" />
 		</td>
+	
+
 
 		<td>
 			<div id="width">

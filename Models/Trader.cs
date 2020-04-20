@@ -34,6 +34,7 @@ namespace TradersPortal.Models
         [Required(ErrorMessage = "Please Select Your State")]
         public int StateId { get; set; }
         public State State { get; set; }
+     
         public virtual ICollection<File> Files { get; set; }
     }
 }

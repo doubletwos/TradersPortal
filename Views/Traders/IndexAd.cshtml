@@ -44,43 +44,44 @@
 		</tr>
 		@foreach (var item in Model)
 		{
-			<tr>
+	<tr>
 
-				@foreach (var file in item.Files) {
-				<td>
+	
+			<td>
 				<img src="~/File?id=@item.Files.First(f => f.FileType == TradersPortal.Models.FileType.Avatar).FileId" alt="avatar" width="100" />
-				</td>
-				}
+			</td>
+			
+		
 
 
 
 
-				<td>
-					<div id="width">
-						@Html.DisplayFor(modelItem => item.BusinessName)
-					</div>
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.State.StateName)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Trade.TradeName)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Telephone)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Mobile)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Email)
-				</td>
-				<td>
-					@Html.ActionLink("Edit", "Edit", new { id = item.TraderId }) |
-					@Html.ActionLink("Details", "Details", new { id = item.TraderId }) |
-					@Html.ActionLink("Delete", "Delete", new { id = item.TraderId })
-				</td>
-			</tr>
+		<td>
+			<div id="width">
+				@Html.DisplayFor(modelItem => item.BusinessName)
+			</div>
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.State.StateName)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Trade.TradeName)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Telephone)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Mobile)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.Email)
+		</td>
+		<td>
+			@Html.ActionLink("Edit", "Edit", new { id = item.TraderId }) |
+			@Html.ActionLink("Details", "Details", new { id = item.TraderId }) |
+			@Html.ActionLink("Delete", "Delete", new { id = item.TraderId })
+		</td>
+	</tr>
 		}
 	</table>
 </div>

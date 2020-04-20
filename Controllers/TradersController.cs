@@ -19,7 +19,7 @@ namespace TradersPortal.Controllers
 
 
         // GET: Traders
-       
+
         public ActionResult Index()
         {
             var traders = db.Traders
@@ -80,33 +80,40 @@ namespace TradersPortal.Controllers
         // POST: Traders/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Trader trader, IEnumerable<HttpPostedFileBase> uploads)
+        public ActionResult Create(Trader trader, HttpPostedFileBase upload)
         {
+            
+
+
             if (ModelState.IsValid)
             {
-                trader.Files = new List<File>();
-                foreach (var file in uploads)
+                if (upload != null && upload.ContentLength > 0)
                 {
-                    if (file != null /*& file.ContentLength > 0*/)
+                    var avatar = new File
                     {
-                        var avatar = new File
-                        {
-                            FileName = System.IO.Path.GetFileName(file.FileName),
-                            FileType = FileType.Avatar,
-                            ContentType = file.ContentType
-                        };
-                        using (var reader = new System.IO.BinaryReader(file.InputStream))
-                        {
-                            avatar.Content = reader.ReadBytes(file.ContentLength);
-                        }
-                        trader.Files.Add(avatar);
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Avatar,
+                        ContentType = upload.ContentType
+                    };
+
+
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        avatar.Content = reader.ReadBytes(upload.ContentLength);
                     }
+                    trader.Files = new List<File> { avatar };
                 }
                 db.Traders.Add(trader);
                 db.SaveChanges();
+
+
             }
             return RedirectToAction("Index", "Home");
         }
+       
+            
+            
+        
 
 
 

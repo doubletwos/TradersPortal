@@ -216,6 +216,38 @@
     <Compile Include="Migrations\202004150926527_DATE.designer.cs">
       <DependentUpon>202004150926527_DATE.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004171402408_FileNullable.cs" />
+    <Compile Include="Migrations\202004171402408_FileNullable.designer.cs">
+      <DependentUpon>202004171402408_FileNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004171404165_Nullable1.cs" />
+    <Compile Include="Migrations\202004171404165_Nullable1.designer.cs">
+      <DependentUpon>202004171404165_Nullable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004171630427_Fix1.cs" />
+    <Compile Include="Migrations\202004171630427_Fix1.designer.cs">
+      <DependentUpon>202004171630427_Fix1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004171632596_Fixed2.cs" />
+    <Compile Include="Migrations\202004171632596_Fixed2.designer.cs">
+      <DependentUpon>202004171632596_Fixed2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004180207134_Key.cs" />
+    <Compile Include="Migrations\202004180207134_Key.designer.cs">
+      <DependentUpon>202004180207134_Key.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004180837210_FilePaths.cs" />
+    <Compile Include="Migrations\202004180837210_FilePaths.designer.cs">
+      <DependentUpon>202004180837210_FilePaths.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004190612379_FilepathGone.cs" />
+    <Compile Include="Migrations\202004190612379_FilepathGone.designer.cs">
+      <DependentUpon>202004190612379_FilepathGone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004201538485_updatedb.cs" />
+    <Compile Include="Migrations\202004201538485_updatedb.designer.cs">
+      <DependentUpon>202004201538485_updatedb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\File.cs" />
@@ -349,6 +381,9 @@
     <Content Include="Views\Traders\IndexAd.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <None Include="Web.Live.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
     <None Include="Web.Testing.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -386,12 +421,36 @@
     <EmbeddedResource Include="Migrations\202004150926527_DATE.resx">
       <DependentUpon>202004150926527_DATE.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004171402408_FileNullable.resx">
+      <DependentUpon>202004171402408_FileNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004171404165_Nullable1.resx">
+      <DependentUpon>202004171404165_Nullable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004171630427_Fix1.resx">
+      <DependentUpon>202004171630427_Fix1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004171632596_Fixed2.resx">
+      <DependentUpon>202004171632596_Fixed2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004180207134_Key.resx">
+      <DependentUpon>202004180207134_Key.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004180837210_FilePaths.resx">
+      <DependentUpon>202004180837210_FilePaths.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004190612379_FilepathGone.resx">
+      <DependentUpon>202004190612379_FilepathGone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004201538485_updatedb.resx">
+      <DependentUpon>202004201538485_updatedb.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Testing|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Live|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
