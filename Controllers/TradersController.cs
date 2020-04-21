@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using TradersPortal.Migrations;
 using TradersPortal.Models;
 
 namespace TradersPortal.Controllers
@@ -82,9 +79,7 @@ namespace TradersPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Trader trader, HttpPostedFileBase upload)
         {
-            
-
-
+         
             if (ModelState.IsValid)
             {
                 if (upload != null && upload.ContentLength > 0)
@@ -105,10 +100,15 @@ namespace TradersPortal.Controllers
                 }
                 db.Traders.Add(trader);
                 db.SaveChanges();
+                return RedirectToAction("Index", "Home");
 
 
             }
-            return RedirectToAction("Index", "Home");
+            ViewBag.StateId = new SelectList(db.States, "StateId", "StateName");
+            ViewBag.TradeId = new SelectList(db.Trades, "TradeId", "TradeName");
+            return View(trader);
+          
+
         }
        
             

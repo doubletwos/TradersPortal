@@ -248,6 +248,22 @@
     <Compile Include="Migrations\202004201538485_updatedb.designer.cs">
       <DependentUpon>202004201538485_updatedb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004211727151_2104Validation.cs" />
+    <Compile Include="Migrations\202004211727151_2104Validation.designer.cs">
+      <DependentUpon>202004211727151_2104Validation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004211804010_validationfix.cs" />
+    <Compile Include="Migrations\202004211804010_validationfix.designer.cs">
+      <DependentUpon>202004211804010_validationfix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004211813544_ValidationFix1.cs" />
+    <Compile Include="Migrations\202004211813544_ValidationFix1.designer.cs">
+      <DependentUpon>202004211813544_ValidationFix1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004211815582_fix2.cs" />
+    <Compile Include="Migrations\202004211815582_fix2.designer.cs">
+      <DependentUpon>202004211815582_fix2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\File.cs" />
@@ -390,6 +406,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\202004211752437_21\" />
     <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
@@ -444,6 +461,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004201538485_updatedb.resx">
       <DependentUpon>202004201538485_updatedb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004211727151_2104Validation.resx">
+      <DependentUpon>202004211727151_2104Validation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004211804010_validationfix.resx">
+      <DependentUpon>202004211804010_validationfix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004211813544_ValidationFix1.resx">
+      <DependentUpon>202004211813544_ValidationFix1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004211815582_fix2.resx">
+      <DependentUpon>202004211815582_fix2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
